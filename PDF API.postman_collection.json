@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "a3270433-5adb-444c-b3f5-3651e1d76e0b",
+		"name": "PDF API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "33403394"
+	},
+	"item": [
+		{
+			"name": "Get All Contracts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Single Contract",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contracts/9b897d04-f2f8-40f8-8a7d-dbc54b719058",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contracts",
+						"9b897d04-f2f8-40f8-8a7d-dbc54b719058"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Stream PDF Contract",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/stream/9b897d04-f78c-4ce0-834e-7ecdddfb9272",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"stream",
+						"9b897d04-f78c-4ce0-834e-7ecdddfb9272"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Contract",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"New Name\",\n    \"content\": \"<h1>Test</h1>\",\n    \"author\": \"Test user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/contracts/9b897d04-f2f8-40f8-8a7d-dbc54b719058",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contracts",
+						"9b897d04-f2f8-40f8-8a7d-dbc54b719058"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Contract",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"New Name\",\n    \"content\": \"<h1>Test</h1>\",\n    \"author\": \"Test user\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost/api/contracts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contracts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contract",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/api/contracts/9b897d04-f2f8-40f8-8a7d-dbc54b719058",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"api",
+						"contracts",
+						"9b897d04-f2f8-40f8-8a7d-dbc54b719058"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
