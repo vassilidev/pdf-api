@@ -13,8 +13,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name'  => 'Administrateur',
-            'email' => 'admin@unitead.fr',
+            'name'  => 'Admin',
+            'email' => 'admin@laravel.com',
+        ]);
+
+        $this->call([
+            ContractSeeder::class,
         ]);
     }
 }
