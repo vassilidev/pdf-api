@@ -40,11 +40,15 @@ class ContractResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('id')
                     ->label('ID')
-                    ->searchable(),
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
+                    ->toggleable()
+                    ->sortable()
+                    ->searchable(isIndividual: true),
                 Tables\Columns\TextColumn::make('author')
-                    ->searchable(),
+                    ->searchable(isIndividual: true)
+                    ->toggleable()
+                    ->sortable(),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
@@ -58,6 +62,9 @@ class ContractResource extends Resource
                 //
             ])
             ->actions([
+                Tables\Actions\ViewAction::make()
+                    ->label('PDF')
+                    ->url(fn(Contract $contract) => route('stream.contract', $contract), shouldOpenInNewTab: true),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ])

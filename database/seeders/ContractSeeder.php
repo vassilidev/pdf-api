@@ -13,7 +13,7 @@ class ContractSeeder extends Seeder
     public function run(): void
     {
         if (app()->isLocal()) {
-            Contract::factory(10)->create();
+            Contract::factory(100)->create();
         }
     }
 }

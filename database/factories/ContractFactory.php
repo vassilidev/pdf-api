@@ -17,9 +17,10 @@ class ContractFactory extends Factory
     public function definition(): array
     {
         return [
-            'name'    => fake()->jobTitle,
-            'author'  => fake()->name,
-            'content' => fake()->randomHtml,
+            'name'       => fake()->jobTitle,
+            'author'     => fake()->name,
+            'content'    => fake()->randomHtml,
+            'created_at' => fake()->dateTimeBetween('-7 days', '+7 days')
         ];
     }
 }
