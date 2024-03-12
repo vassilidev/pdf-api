@@ -72,7 +72,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"New Name\",\n    \"content\": \"<h1>Test</h1>\",\n    \"author\": \"Test user\"\n}",
+					"raw": "{\n    \"name\": \"New Name\",\n    \"content\": \"<h1>{{ key }}</h1>\",\n    \"author\": \"Test user\",\n    \"data\": {\n        \"{{ key }}\": \"value\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -101,7 +101,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"name\": \"New Name\",\n    \"content\": \"<h1>Test</h1>\",\n    \"author\": \"Test user\"\n}",
+					"raw": "{\n    \"name\": \"New Name\",\n    \"content\": \"<h1>{{ key }}</h1>\",\n    \"author\": \"Test user\",\n    \"data\": {\n        \"{{ key }}\": \"value\"\n    }\n}",
 					"options": {
 						"raw": {
 							"language": "json"

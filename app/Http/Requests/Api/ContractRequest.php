@@ -35,6 +35,11 @@ class ContractRequest extends FormRequest
                 'string',
                 'required',
             ],
+            'data' => [
+                'sometimes',
+                'nullable',
+                'array',
+            ],
         ];
     }
 }

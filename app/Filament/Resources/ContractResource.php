@@ -31,6 +31,8 @@ class ContractResource extends Resource
                 Forms\Components\TextInput::make('author')
                     ->required()
                     ->maxLength(255),
+                Forms\Components\KeyValue::make('data')
+                    ->nullable(),
             ]);
     }
 
