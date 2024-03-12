@@ -46,7 +46,7 @@ class AdminPanelProvider extends PanelProvider
             ->widgets([
                 Widgets\AccountWidget::class,
                 Widgets\FilamentInfoWidget::class,
-                ContractChart::class,
+//                ContractChart::class,
             ])
             ->middleware([
                 EncryptCookies::class,
