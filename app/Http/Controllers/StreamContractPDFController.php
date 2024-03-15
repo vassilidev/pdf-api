@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Contract;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Dompdf\Dompdf;
+use Dompdf\Options;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
@@ -28,9 +30,19 @@ class StreamContractPDFController extends Controller
 
         $html = $this->embedImages($html);
 
-        return Pdf::loadView('pdf', compact('html'))
-            ->setOption('isRemoteEnabled', true)
-            ->stream($contract->name . '.pdf');
+        $domPdf = new Dompdf();
+        $options = new Options();
+
+        $options->setIsRemoteEnabled(true);
+
+        $domPdf->setOptions($options);
+        $domPdf->loadHtml($html);
+
+        $domPdf->render();
+
+        $domPdf->stream(options: ['Attachment' => false]);
+
+        exit;
     }
 
     /**
