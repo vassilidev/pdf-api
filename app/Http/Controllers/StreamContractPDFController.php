@@ -14,13 +14,17 @@ class StreamContractPDFController extends Controller
      */
     public function __invoke(Contract $contract)
     {
-        $html = Str::replace(
-            search: array_keys($contract->data),
-            replace: array_values($contract->data),
-            subject: $contract->content,
-        );
+        $html = $contract->content;
 
-        return Pdf::loadHTML($html)
+        if($contract->data) {
+            $html = Str::replace(
+                search: array_keys($contract->data),
+                replace: array_values($contract->data),
+                subject: $html,
+            );
+        }
+
+        return Pdf::loadView('pdf', compact('html'))
             ->stream($contract->name . '.pdf');
     }
 }
