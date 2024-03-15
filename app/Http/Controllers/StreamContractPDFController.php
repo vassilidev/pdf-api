@@ -28,7 +28,7 @@ class StreamContractPDFController extends Controller
 
         $html = $this->embedImages($html);
 
-        return Pdf::loadHTML($html)
+        return Pdf::loadView('pdf', compact('html'))
             ->stream($contract->name . '.pdf');
     }
 
