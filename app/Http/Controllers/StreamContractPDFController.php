@@ -28,7 +28,7 @@ class StreamContractPDFController extends Controller
             );
         }
 
-//        $html = $this->embedImages($html);
+        $html = $this->embedImages($html);
 
         $domPdf = new Dompdf();
         $options = new Options();
@@ -61,17 +61,15 @@ class StreamContractPDFController extends Controller
     {
         $pattern = '/<img[^>]+src="([^"]+)"[^>]*>/i';
 
-        $callback = static function ($matches) {
+        $callback = function ($matches) {
             try {
                 $imageUrl = $matches[1];
 
-                $imageContent = Http::get($imageUrl)->body();
+                $imageContent = file_get_contents($imageUrl);
 
                 $base64 = base64_encode($imageContent);
 
-                $dataUri = 'data:image/' . pathinfo($imageUrl, PATHINFO_EXTENSION) . ';base64,' . $base64;
-
-                dd('<img src="' . $dataUri . '">');
+                $dataUri = 'data:image/' . $this->getImageMimeType($imageContent) . ';base64,' . $base64;
 
                 return '<img src="' . $dataUri . '">';
             } catch (\Exception $exception) {
@@ -82,5 +80,38 @@ class StreamContractPDFController extends Controller
         };
 
         return preg_replace_callback($pattern, $callback, $html);
+    }
+
+    private function getBytesFromHexString($hex): string
+    {
+        $bytes = [];
+
+        for ($count = 0, $countMax = strlen($hex); $count < $countMax; $count += 2) {
+            $bytes[] = chr(hexdec(substr($hex, $count, 2)));
+        }
+
+        return implode($bytes);
+    }
+
+    private function getImageMimeType($base64decoded): ?string
+    {
+        $imagemimetypes = array(
+            "jpeg" => "FFD8",
+            "png"  => "89504E470D0A1A0A",
+            "gif"  => "474946",
+            "bmp"  => "424D",
+            "tiff" => "4949",
+            "tiff" => "4D4D"
+        );
+
+        foreach ($imagemimetypes as $mime => $hexbytes) {
+            $bytes = $this->getBytesFromHexString($hexbytes);
+
+            if (str_starts_with($base64decoded, $bytes)) {
+                return $mime;
+            }
+        }
+
+        return NULL;
     }
 }
