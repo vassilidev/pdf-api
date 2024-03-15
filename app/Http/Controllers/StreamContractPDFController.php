@@ -64,22 +64,19 @@ class StreamContractPDFController extends Controller
         $callback = function ($matches) {
             try {
                 $imageUrl = $matches[1];
-                dump($imageUrl);
+
                 $imageContent = file_get_contents($imageUrl);
 
                 $base64 = base64_encode($imageContent);
 
                 $dataUri = 'data:image/' . $this->getImageMimeType($imageContent) . ';base64,' . $base64;
-                dump($dataUri);
 
-//                return '<img src="' . $dataUri . '">';
-                echo '<img src="' . $dataUri . '">';
-
+                return '<img src="' . $dataUri . '">';
             } catch (\Exception $exception) {
                 Log::error($exception->getMessage());
             }
 
-            return '';
+            return 'ERROR BASE 64';
         };
 
         return preg_replace_callback($pattern, $callback, $html);
