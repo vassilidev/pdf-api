@@ -3,6 +3,10 @@
 Route::get('test', function () {
     $url = "https://manu.qwile.com/wp-content/uploads/sites/7/2024/03/Asset-2@4x-8.png";
 
+    ini_set('user_agent','Mozilla/4.0 (compatible; MSIE 6.0)');
+
+    dump(file_get_contents($url));
+
     $ch = curl_init();
 
     // set url
