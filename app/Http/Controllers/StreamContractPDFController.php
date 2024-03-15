@@ -28,7 +28,7 @@ class StreamContractPDFController extends Controller
             );
         }
 
-        $html = $this->embedImages($html);
+//        $html = $this->embedImages($html);
 
         $domPdf = new Dompdf();
         $options = new Options();
@@ -48,7 +48,6 @@ class StreamContractPDFController extends Controller
         $domPdf->loadHtml($html);
 
         $domPdf->render();
-
 
         $domPdf->stream(options: ['Attachment' => false]);
 
@@ -71,6 +70,8 @@ class StreamContractPDFController extends Controller
                 $base64 = base64_encode($imageContent);
 
                 $dataUri = 'data:image/' . pathinfo($imageUrl, PATHINFO_EXTENSION) . ';base64,' . $base64;
+
+                dd('<img src="' . $dataUri . '">');
 
                 return '<img src="' . $dataUri . '">';
             } catch (\Exception $exception) {
