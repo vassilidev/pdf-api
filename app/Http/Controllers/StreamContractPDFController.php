@@ -36,9 +36,19 @@ class StreamContractPDFController extends Controller
         $options->setIsRemoteEnabled(true);
 
         $domPdf->setOptions($options);
+
+        $domPdf->setHttpContext([
+            'ssl' => [
+                'allow_self_signed' => true,
+                'verify_peer'       => false,
+                'verify_peer_name'  => false,
+            ]
+        ]);
+
         $domPdf->loadHtml($html);
 
         $domPdf->render();
+
 
         $domPdf->stream(options: ['Attachment' => false]);
 
