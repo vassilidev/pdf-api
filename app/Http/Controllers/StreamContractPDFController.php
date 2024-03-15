@@ -29,6 +29,7 @@ class StreamContractPDFController extends Controller
         $html = $this->embedImages($html);
 
         return Pdf::loadView('pdf', compact('html'))
+            ->setOption('isRemoteEnabled', true)
             ->stream($contract->name . '.pdf');
     }
 
